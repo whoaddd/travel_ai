@@ -14,7 +14,9 @@
 
 ## node.js
 
-https://nodejs.org/zh-cn/download，选择24版本以上
+https://nodejs.org/zh-cn/download
+
+选择24版本以上
 
 终端查看node版本
 
