@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # MySQL 数据库
+  mysql:
+    image: mysql:8.0
+    container_name: travel-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: travel_ai
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p123456"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - travel-network
+
+  # 后端 Java 服务
+  travel-java:
+    build:
+      context: ../travel-java
+      dockerfile: Dockerfile
+    container_name: travel-java
+    restart: unless-stopped
+    ports:
+      - "3200:3200"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/travel_ai?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=123456
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - travel-network
+
+  # 前端 Nginx 服务
+  travel-vue:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: travel-vue
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - travel-java
+    networks:
+      - travel-network
+
+volumes:
+  mysql_data:
+
+networks:
+  travel-network:
+    driver: bridge

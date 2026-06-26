@@ -1,0 +1,33 @@
+server:
+  port: 3200
+
+spring:
+  application:
+    name: whoa-ai
+  ai:
+    openai:
+      base-url: https://aigw-gzgy2.cucloud.cn:8443/v1
+      api-key: sk-sp-GVvsVdkTUTYtYCnMSP567TmxZDhP9dYV
+      chat:
+        model: glm-5.1
+  datasource:
+    url: jdbc:mysql://localhost:3306/travel_ai?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.whoa.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+jwt:
+  secret: whoa-ai-travel-secret-key-2024-must-be-long-enough
+  expiration: 86400000
+
+logging:
+  level:
+    com.whoa: debug
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
