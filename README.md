@@ -62,6 +62,18 @@ mysql创建数据库travel_ai
 
 拉取镜像到本地仓库，详情参照docker部署文档
 
+# 模型选择
+
+在java项目中找到travel-java\src\main\resources\application.yaml，修改spring:ai:openai:base-url: xxxxxxxxx (你的API地址)api-key: xxxxxxxxx (你的API Key)chat:model:(你的模型名称)
+
+## 本地模型
+
+使用ollama,下载模型到本地，使用本地模型连接。但本地电脑运算能力有限不推荐
+
+## coding plan
+
+购买阿里云腾讯云等厂商coding plan使用厂商提供的链接地址和key
+
 # 公网访问
 
 由于使用的VM虚拟机，设备IP地址无法被公网访问，因此需要使用内网穿透，这里介绍使用樱花内网穿透
