@@ -1,6 +1,6 @@
 # 项目介绍
 
-此项目基于VUE和springboot创建的全栈ai项目
+此项目基于VUE和springboot创建的全栈ai项目,使用技术栈包括：前端：vue3，vite，Axios;后端：springboot,springMVC,mybatis，springAI,JWT,linux,docker
 
 # 环境介绍
 
