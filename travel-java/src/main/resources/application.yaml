@@ -6,10 +6,10 @@ spring:
     name: whoa-ai
   ai:
     openai:
-      base-url: https://aigw-gzgy2.cucloud.cn:8443/v1
-      api-key: sk-sp-GVvsVdkTUTYtYCnMSP567TmxZDhP9dYV
+      base-url: xxxxxxxxx (你的API地址)
+      api-key: xxxxxxxxx (你的API Key)
       chat:
-        model: glm-5.1
+        model: xxx (你的模型名称)
   datasource:
     url: jdbc:mysql://localhost:3306/travel_ai?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
